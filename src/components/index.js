@@ -11,6 +11,8 @@ import loadImage from './Image';
 import loadSocial from './Social';
 import loadDivider from './Divider';
 import loadSpacer from './Spacer';
+import loadRssBlock from './rssComponent';
+import loadTable from './Table';
 
 export default (editor, opt = {}) => {
   let domc = editor.DomComponents;
@@ -18,6 +20,7 @@ export default (editor, opt = {}) => {
   let textType = domc.getType('text');
   let imageType = domc.getType('image');
   let linkType = domc.getType('link');
+  let tableType = domc.getType('table');
   let defaultModel = defaultType.model;
   let defaultView = defaultType.view;
   let textModel = textType.model;
@@ -26,12 +29,11 @@ export default (editor, opt = {}) => {
   let imageView = imageType.view;
   let linkModel = linkType.model;
   let linkView = linkType.view;
+  let tableModel = tableType.model;
+  let tableView = tableType.view; 
   const dc = domc;
   const ComponentsView = domc.ComponentsView;
   const sandboxEl = document.createElement('div');
-
-
-
 
   // MJML Core model
   let coreMjmlModel = {
@@ -259,7 +261,7 @@ export default (editor, opt = {}) => {
   let coreMjmlIntView = Object.assign({}, coreMjmlView);
   const compOpts = {
       dc, coreMjmlModel, coreMjmlView, opt, sandboxEl, defaultModel, defaultView,
-      textModel, textView, linkModel, linkView, imageModel, imageView
+      textModel, textView, linkModel, linkView, imageModel, imageView, tableModel, tableView
   };
 
   loadMjml(editor, compOpts);
@@ -274,4 +276,10 @@ export default (editor, opt = {}) => {
   loadSocial(editor, compOpts);
   loadDivider(editor, compOpts);
   loadSpacer(editor, compOpts);
+  loadRssBlock(editor, compOpts);
+  loadTable(editor, compOpts)
+
+
+
+
 }

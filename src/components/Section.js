@@ -24,7 +24,7 @@ export default (editor, {
         stylable: [
           'vertical-align', 'text-align',
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'background-color', 'background-url', 'background-repeat', 'background-size',
+          'background-color', 'background-repeat', 'background-size',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color'
         ],

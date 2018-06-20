@@ -26,7 +26,7 @@ export default (editor, {
         },
         stylable: [
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
-          'width', 'container-background-color',
+          'container-background-color',
           'border-detached', 'border-width', 'border-style', 'border-color'
         ],
       },

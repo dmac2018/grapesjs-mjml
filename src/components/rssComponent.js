@@ -3,7 +3,7 @@
 export default (editor, {
   dc, opt, textModel, textView, coreMjmlModel, coreMjmlView
 }) => {
-  const type = 'mj-text';
+  const type = 'rssBlock';
 
   dc.addType(type, {
 
@@ -11,9 +11,9 @@ export default (editor, {
     model: textModel.extend({ ...coreMjmlModel,
 
       defaults: { ...textModel.prototype.defaults,
-        'custom-name': 'Text',
+        'custom-name': 'RSS',
+        activeOnRender: true,
         draggable: '[data-type=mj-column]',
-        droppable: '[rssBlock]',
         highlightable: false,
         unstylable: ['background-color', 'text-align','width', 'max-width', 'height', 'min-height', 'text-shadow',
         'font', 'font-size', 'font-weight', 'letter-spacing', 'vertical-align',
@@ -38,7 +38,7 @@ export default (editor, {
     },{
 
       isComponent(el) {
-        if (el.tagName == type.toUpperCase() && !$(el).hasClass("rss")) {
+        if ($(el).hasClass("rss")) {
           return {
             type,
             content: el.innerHTML,
@@ -57,6 +57,20 @@ export default (editor, {
         style: 'pointer-events: all; display: table; width: 100%',
       },
 
+      initialize(o) {
+        const model = this.model;
+        textView.prototype.initialize.apply(this, arguments);
+        //this.listenTo(model, 'change:src', this.updateSrc);
+        this.listenTo(model, 'dblclick active', this.openModal);
+      },
+      openModal(e) {
+        var url = "/csb/Campaigns/CampaignRSS.aspx?editorType=6";
+        win.showWindow('Insert RSS Content', url, 630, 745);
+        editor.select(this.model);
+
+        //hide the ckEditor
+        $(".gjs-rte-toolbar").hide()
+      },
       getMjmlTemplate() {
         return {
           start: `<mjml><mj-body><mj-column>`,

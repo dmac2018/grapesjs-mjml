@@ -72,18 +72,19 @@ export default grapesjs.plugins.add('gjs-mjml', (editor, opts = {}) => {
   // Add Commands
   require('./commands').default(editor, opt);
 
+  //Add Traits
+  require('./Traits/customImgTraits').default(editor, opt);
+
   // Add Buttons
-  require('./buttons').default(editor, opt);
+  //require('./buttons').default(editor, opt);
 
   // Extend Style Manager
   require('./style').default(editor, opt);
 
-  // Update devices
-  if (opt.resetDevices) {
-    const dm = editor.DeviceManager;
-    dm.getAll().reset();
-    dm.add('Desktop', '');
-    dm.add('Mobile', '320px');
-  }
+
+
+
+
+
 
 });
