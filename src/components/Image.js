@@ -12,6 +12,7 @@ export default (editor, {
 
       defaults: { ...imageModel.prototype.defaults,
         'custom-name': 'Image',
+        customBadgeLabel: 'Image',
         resizable: false,
         highlightable: false,
         draggable: '[data-type=mj-column]',
@@ -20,7 +21,7 @@ export default (editor, {
           'padding', 'padding-top', 'padding-left', 'padding-right', 'padding-bottom',
           'border-radius', 'border-top-left-radius', 'border-top-right-radius', 'border-bottom-left-radius', 'border-bottom-right-radius',
           'border', 'border-width', 'border-style', 'border-color',
-          'container-background-color', 'align',
+          'align',
         ],
         'style-default': {
           'padding-top': '10px',
@@ -29,8 +30,56 @@ export default (editor, {
           'padding-left': '25px',
           'align': 'center',
         },
-        traits: ['href', 'rel', 'alt', 'title'],
+        unstylable: ['background-url', 'max-width', 'min-height', 'background-color'],
         void: true,
+        traits: [
+          {
+            //placeholder for our media library link
+            type: 'text',
+  
+          },
+          {
+            type: 'text',
+            label: 'Image URL',
+            name: 'src',
+            changeProp: 0
+          },
+          {
+            type: 'text',
+            label: 'Image Description',
+            name: 'alt',
+            changeProp: 0
+          },
+          {
+            prop: 'href',
+            type: 'text',
+            label: 'Destination URL',
+            name: 'href',
+            placeholder: 'http://www.example.com',
+            changeProp: 1,
+          },
+          {
+            type: 'checkbox',
+            label: 'Track Clicks',
+            name: 'trackClicks',
+            changeProp: 1,
+            id: 'test'
+          },
+          {
+            type: 'text',
+            label: 'Reporting Name',
+            name: 'name',
+            changeProp: 1
+          },
+          {
+            type: 'buttonGroup',
+            name: 'buttonGroup',
+            label: '',
+            changeProp: 1
+          },
+  
+  
+        ],
       },
     },{
 
